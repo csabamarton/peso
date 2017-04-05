@@ -14,6 +14,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 @Component
@@ -44,8 +45,8 @@ public class ChangeEndpoints {
     @GET
     @Path("/get/inventory")
     @Produces(MediaType.APPLICATION_JSON)
-    public CashRegister getInventory() {
-        CashRegister cashRegister = cashRegisterFactory.buildCashRegister("cuc");
+    public CashRegister getInventory(@QueryParam("key") String key) {
+        CashRegister cashRegister = cashRegisterFactory.buildCashRegister(key);
 
         return cashRegister;
     }
