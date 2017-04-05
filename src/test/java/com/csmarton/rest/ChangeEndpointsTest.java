@@ -51,7 +51,7 @@ public class ChangeEndpointsTest {
 
     @Test
     public void cucCurrencyShouldReturnWithBanknotesAndRemains() throws IOException, JSONException {
-        String s = getChangeRequestAsJsonString(CashRegisterFactory.CUC + "df", 248);
+        String s = getChangeRequestAsJsonString(CashRegisterFactory.CUC, 248);
 
         HttpEntity<String> entity = new HttpEntity<>(s, headers);
         ResponseEntity<String> stringResponseEntity = restTemplate.postForEntity("/api/get/banknotes", entity, String.class);
@@ -89,9 +89,10 @@ public class ChangeEndpointsTest {
     }
 
     @Test
-    public void getCashRegisterInventoryShouldReturnWithBanknotes() {
-        String responseEntity = this.restTemplate.getForObject("/api/get/inventory", String.class);
-        assertThat("").isEqualTo("It works");
+    public void getCashRegisterInventoryShouldReturnWithBanknotes() throws IOException {
+        String responseEntity = this.restTemplate.getForObject("/api/get/inventory?key=cuc", String.class);
+
+        assertThat(responseEntity).isNotNull();
     }
 
 
