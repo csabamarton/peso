@@ -1,0 +1,1 @@
+./mvnw clean -DskipTests=true package
